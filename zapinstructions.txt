@@ -1,0 +1,6 @@
+installed zap... from website... make sure the zaproxy is there in zaphome /opt/zaproxy
+
+*refer to the zap code in the jenkinsfileZAP
+
+*Integrating ZAP into jenkins CI/CD Pipeline project
+
