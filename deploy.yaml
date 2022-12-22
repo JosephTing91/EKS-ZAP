@@ -14,6 +14,17 @@
         owner: ansadmin
         group: ansadmin
         mode: 0777
+    - name: create frontend
+      shell:
+        cmd: kubectl apply -f frontend.yaml
+    - name: create backend
+      shell:
+        cmd: kubectl apply -f backend.yaml
+    - name: create database
+      shell:
+        cmd: kubectl apply -f database.yaml       
+
+  
     # - name: build image
     #   become: true
     #   shell:
