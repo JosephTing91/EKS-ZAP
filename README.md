@@ -1,10 +1,6 @@
 # EKS-ZAP
 eks zap CICD pipeline
 
-
-
-
-
 #code to launch cluster
 
 export PATH=$PATH:/usr/local/bin
@@ -15,6 +11,43 @@ export PATH=$PATH:/usr/local/bin
    --nodes-min 1 \
    --version 1.24
  
+
+#set up prometheus metrics collection...
+
+#first associate IAM OIDC provider with cluster
+
+eksctl utils associate-iam-oidc-provider --region=us-east-1 --cluster=dev-cluster --approve
+
+eksctl create iamserviceaccount \
+ --name cwagent-prometheus \
+--namespace amazon-cloudwatch \
+ --cluster dev-cluster \
+ --region us-east-1 \
+--attach-policy-arn arn:aws:iam::aws:policy/CloudWatchAgentServerPolicy \
+--approve \
+--override-existing-serviceaccounts
+
+
+
+kubectl delete deployment cwagent-prometheus -n amazon-cloudwatch
+
+kubectl create namespace amazon-cloudwatch
+
+kubectl apply -f prometheus-eks.yaml
+
+curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/service/cwagent-prometheus/prometheus-k8s.yaml | 
+sed "s/{{cluster_name}}/dev-cluster/;s/{{region_name}}/us-east-1/" | 
+kubectl apply -f -
+
+
+kubectl get pod -l "app=cwagent-prometheus" -n amazon-cloudwatch
+
+
+
+
+
+
+
 
 #ansible playbook to install git and node exporter into the eks cluster worker nodes...
 
