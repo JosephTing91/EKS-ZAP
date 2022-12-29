@@ -2,5 +2,42 @@ installed zap... from website... make sure the zaproxy is there in zaphome /opt/
 
 *refer to the zap code in the jenkinsfileZAP
 
+
 *Integrating ZAP into jenkins CI/CD Pipeline project
+#https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+
+
+#install ssh agent plugin in jenkins
+
+
+
+sudo apt update -y
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+
+sudo apt update
+
+apt-cache policy docker-ce
+
+sudo apt install docker-ce
+
+sudo systemctl status docker
+
+
+
+sudo usermod -aG docker ${USER}
+su -${USER}
+id -nG
+
+
+
+go into jenkins server and configure ZAP credentials...
+add credentials of type ssh username with private key...
+
+called zap with ssh private key pasted in...
+
+
 

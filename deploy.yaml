@@ -1,4 +1,3 @@
-
 - name: Ansible Copy Local to Remote
   hosts: "{{hosts}}"
   vars:
@@ -26,7 +25,6 @@
     - name: create database
       shell:
         cmd: kubectl apply -f database.yaml       
-
   
     # - name: build image
     #   become: true
