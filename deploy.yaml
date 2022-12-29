@@ -25,7 +25,15 @@
     - name: create database
       shell:
         cmd: kubectl apply -f database.yaml       
-  
+    - name: create namespace
+      shell:
+        cmd: kubectl create namespace monitoring   
+    - name: create namespacedaemonset
+        cmd: kubectl apply -f daemonset.yaml
+    - name: create service
+      shell:
+        cmd: kubectl apply -f service.yaml      
+
     # - name: build image
     #   become: true
     #   shell:
