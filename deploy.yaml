@@ -29,6 +29,7 @@
       shell:
         cmd: kubectl create namespace monitoring   
     - name: create namespacedaemonset
+      shell:
         cmd: kubectl apply -f daemonset.yaml
     - name: create service
       shell:

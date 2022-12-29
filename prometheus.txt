@@ -3,23 +3,39 @@ global:
   external_labels:
     monitor: 'prometheus'
 
+global:
+  scrape_interval: 15s
+  external_labels:
+    monitor: 'prometheus'
+
 scrape_configs:
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['localhost:9090','3.235.103.238:9100']
-  - job_name: 'node'
+      - targets: ['localhost:9090']
+  - job_name: 'webapp'
     ec2_sd_configs:
-      - region: us-east-1        
+      - region: us-east-1
         port: 9100
+          #        filters:
+          #  - name: tag:Application
+          #  values:
+          #    - webapp
+  - job_name: 'node-exporter'
+    kubernetes_sd_configs:
+     - role: endpoints
+    relabel_configs:
+    - source_labels: [__meta_kubernetes_endpoints_name]
+      regex: 'node-exporter'
+      action: keep
   - job_name: 'jenkins'
     metrics_path: /prometheus/
-    ec2_sd_configs:     
-      - region: us-east-1        
+    ec2_sd_configs:
+      - region: us-east-1
         port: 8080
         filters:
           - name: tag:Application
             values:
-              - jenkins        
+              - jenkins
   # - job_name: 'jenkins'
   #   metrics_path: /prometheus/
   #   static_configs:
