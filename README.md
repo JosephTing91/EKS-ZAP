@@ -11,6 +11,12 @@ export PATH=$PATH:/usr/local/bin
    --nodes-min 1 \
    --version 1.24
  
+   eksctl delete cluster --name dev-cluster  \
+   --region us-east-1
+
+
+
+
 
 #set up prometheus metrics collection...
 
@@ -111,3 +117,13 @@ scrape_configs:
   #   static_configs:
   #   - targets: ['172.31.86.134:8080'] # should replace with the jenkins IP
     
+
+
+
+    #Sonar Server instructions
+
+    create project in sonarqube.
+    -use token and create token key... 
+input the values generated from sonarqube into the pipeline to run the job 
+
+craete webhook
