@@ -1,0 +1,23 @@
+
+-crate nexus repos...
+make sure right ip and refernces in the files...
+
+-in the pom.xml have reference to the nexus repo directories...
+
+  <distributionManagement>
+    <site>
+      <id>site-server</id>
+      <name>Test Project Site</name>
+      <url>file:///tmp/maven-project-site</url>
+    </site>
+    <snapshotRepository>
+            <id>nexus</id>
+            <url>http://172.31.12.165:8081/repository/maven-snapshots/</url>          <!--Replace the Nexus Private IP in this line-->
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <url>http://172.31.12.165:8081/repository/maven-releases/</url>           <!--Replace the Nexus Private IP in this line-->
+        </repository>
+  </distributionManagement>
+
+  
