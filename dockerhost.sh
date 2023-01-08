@@ -11,9 +11,17 @@ sudo service sshd restart
 sudo yum install docker -y
 service docker start
 
+#install trivy
+
 
 
 
 docker pull tomcat
 docker run -d --name tomcat-container -p 8081:8080 tomcat
 cp -R * ../webapps/
+
+
+trivy shell code
+
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+    -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy:0.18.3 regapp:v1
