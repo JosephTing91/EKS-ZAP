@@ -1,7 +1,7 @@
 - name: Ansible Copy Local to Remote
   hosts: "{{hosts}}"
   vars:
-    src_path: "{{ workspace_path }}/*"
+    src_path: "{{ workspace_path }}/"
     dest_path: "/home/ansadmin"
     config_file_dest_path: "/home"
   tasks:
