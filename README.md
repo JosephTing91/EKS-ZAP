@@ -5,7 +5,7 @@ eks zap CICD pipeline
 
 export PATH=$PATH:/usr/local/bin
 
-   eksctl create cluster --name dev-cluster  \
+   eksctl create cluster --name dev-cluster\
    --region us-east-1 \
    --node-type t2.medium \
    --nodes-min 1 \

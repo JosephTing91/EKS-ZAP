@@ -54,6 +54,9 @@ newgrp docker
 sudo yum install python3-pip
 sudo pip3 install docker-compose # with root access
 
+#install trivy
+curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/bin
+
 #enable docker service at boot
 sudo systemctl enable docker.service
 sudo systemctl start docker.service
